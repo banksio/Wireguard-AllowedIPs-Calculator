@@ -24,7 +24,8 @@ disallow_ip_raw = ["10.0.0.0/8","fc00::/7"]
 
 Warning:THIS PROGRAM IS NO GUARANTEE! PLEASE USE IT AT YOUR OWN RISK. ILLEGAL USE IS STRICTLY PROHIBITED.
 
-简单好用的Wireguard路由IP计算器
+---
+# 简单好用的Wireguard路由IP计算器
 
 # 使用方法:
 
