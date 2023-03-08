@@ -1,8 +1,9 @@
 # Wireguard-AllowedIPs-Calculator
+---
 
-Simple Wireguard AllowedIPs Calculator
+# Simple Wireguard AllowedIPs Calculator
 
-# Usage:
+## Usage:
 
 ## wg.py (Cli output)
 
@@ -27,7 +28,7 @@ Warning:THIS PROGRAM IS NO GUARANTEE! PLEASE USE IT AT YOUR OWN RISK. ILLEGAL US
 ---
 # 简单好用的Wireguard路由IP计算器
 
-# 使用方法:
+## 使用方法:
 
 ## wg.py (Cli输出)
 
@@ -49,9 +50,9 @@ disallow_ip_raw = ["10.0.0.0/8","fc00::/7"]
 
 警告：本程序无任何保证, 请自行承担使用风险。严禁利用本程序进行非法活动。本程序作者不负任何责任。
 
-簡単なWireguard AllowedIPs計算機
+# 簡単なWireguard AllowedIPs計算機
 
-# 使用方法:
+## 使用方法:
 
 ## wg.py (Cli出力)
 
@@ -62,7 +63,7 @@ disallow_ip_raw = ["10.0.0.0/8","fc00::/7"]
 
 ## wgpy.py
 
-上記と同じだが、Cliを通じてパラメータを取得しない。プログラム内で指定する。編集した後で他のコードでも利用可能。
+上記と同じだが、Cliでパラメータを取得しない。プログラム内で指定する。編集した後で他のコードでも利用可能。
 
 ```python
 allow_ip_raw = ["0.0.0.0/0","::0/0"]
