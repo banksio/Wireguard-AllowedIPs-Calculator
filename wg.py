@@ -49,5 +49,7 @@ for ipd in disallow_ip_raw:
         disallowed_ipv4.append(IPv4Network(ipd))
     elif check_ip_network_type(ipd) == 6:
         disallowed_ipv6.append(IPv6Network(ipd))
-result = f"AllowedIPs = {', '.join(calc_wg_ip_range(allowed_ipv4, disallowed_ipv4) + calc_wg_ip_range(allowed_ipv6, disallowed_ipv6))}"
-print(result)
+result = calc_wg_ip_range(allowed_ipv4, disallowed_ipv4) + calc_wg_ip_range(allowed_ipv6, disallowed_ipv6)
+output = list(set(result))
+output.sort(key=result.index)
+print(f"AllowedIPs = {', '.join(output)}")
