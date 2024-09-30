@@ -55,7 +55,24 @@ def check_raw_ips(allow_ip_raw, disallow_ip_raw):
     return allowed_ipv4, allowed_ipv6, disallowed_ipv4, disallowed_ipv6
 
 
-def main():
+def calculate_wg_allowedips(allow_ip_raw: list[str], disallow_ip_raw: list[str]) -> list[str]:
+    allowed_ipv4, allowed_ipv6, disallowed_ipv4, disallowed_ipv6 = check_raw_ips(
+        allow_ip_raw, disallow_ip_raw
+    )
+    result = calc_wg_ip_range(allowed_ipv4, disallowed_ipv4) + calc_wg_ip_range(
+        allowed_ipv6, disallowed_ipv6
+    )
+    output = list(set(result))
+    output.sort(key=result.index)
+    return output
+
+
+def main(allow_ip_raw: list[str], disallow_ip_raw: list[str]):
+    output = calculate_wg_allowedips(allow_ip_raw, disallow_ip_raw)
+    print(f"AllowedIPs = {', '.join(output)}")
+
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-a",
@@ -76,16 +93,4 @@ def main():
 
     allow_ip_raw: list[str] = args.a.split(",")
     disallow_ip_raw: list[str] = args.d.split(",")
-    allowed_ipv4, allowed_ipv6, disallowed_ipv4, disallowed_ipv6 = check_raw_ips(
-        allow_ip_raw, disallow_ip_raw
-    )
-    result = calc_wg_ip_range(allowed_ipv4, disallowed_ipv4) + calc_wg_ip_range(
-        allowed_ipv6, disallowed_ipv6
-    )
-    output = list(set(result))
-    output.sort(key=result.index)
-    print(f"AllowedIPs = {', '.join(output)}")
-
-
-if __name__ == "__main__":
-    main()
+    main(allow_ip_raw, disallow_ip_raw)
