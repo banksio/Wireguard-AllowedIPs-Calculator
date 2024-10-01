@@ -19,7 +19,7 @@ self.onmessage = async (event) => {
   try {
     await pyodide.runPythonAsync(`
         from pyodide.http import pyfetch
-        response = await pyfetch("/wg.py")
+        response = await pyfetch("wg.py")
         with open("script.py", "wb") as f:
             f.write(await response.bytes())
         `);
