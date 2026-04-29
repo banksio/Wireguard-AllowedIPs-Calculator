@@ -1,6 +1,8 @@
 # WireGuard-AllowedIPs-Calculator
 A simple WireGuard AllowedIPs calculator.
 
+Use the GitHub Pages version in the browser: https://banksio.github.io/Wireguard-AllowedIPs-Calculator/
+
 ## Usage
 
 ```
