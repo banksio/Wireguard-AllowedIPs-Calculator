@@ -8,7 +8,7 @@ T = typing.TypeVar("T", list[ipaddress.IPv4Network], list[ipaddress.IPv6Network]
 
 def check_ip_network_type(address: str):
     try:
-        return 4 if type(ipaddress.ip_network(address)) is ipaddress.IPv4Network else 6
+        return 4 if type(ipaddress.ip_network(address.strip())) is ipaddress.IPv4Network else 6
     except ValueError:
         return 10
 
@@ -43,15 +43,21 @@ def check_raw_ips(allow_ip_raw, disallow_ip_raw):
     disallowed_ipv4: list[ipaddress.IPv4Network] = []
     disallowed_ipv6: list[ipaddress.IPv6Network] = []
     for ipa in allow_ip_raw:
-        if check_ip_network_type(ipa) == 4:
-            allowed_ipv4.append(ipaddress.IPv4Network(ipa))
-        elif check_ip_network_type(ipa) == 6:
-            allowed_ipv6.append(ipaddress.IPv6Network(ipa))
+        ipa_clean = ipa.strip()
+        if not ipa_clean:
+            continue
+        if check_ip_network_type(ipa_clean) == 4:
+            allowed_ipv4.append(ipaddress.IPv4Network(ipa_clean))
+        elif check_ip_network_type(ipa_clean) == 6:
+            allowed_ipv6.append(ipaddress.IPv6Network(ipa_clean))
     for ipd in disallow_ip_raw:
-        if check_ip_network_type(ipd) == 4:
-            disallowed_ipv4.append(ipaddress.IPv4Network(ipd))
-        elif check_ip_network_type(ipd) == 6:
-            disallowed_ipv6.append(ipaddress.IPv6Network(ipd))
+        ipd_clean = ipd.strip()
+        if not ipd_clean:
+            continue
+        if check_ip_network_type(ipd_clean) == 4:
+            disallowed_ipv4.append(ipaddress.IPv4Network(ipd_clean))
+        elif check_ip_network_type(ipd_clean) == 6:
+            disallowed_ipv6.append(ipaddress.IPv6Network(ipd_clean))
     return allowed_ipv4, allowed_ipv6, disallowed_ipv4, disallowed_ipv6
 
 

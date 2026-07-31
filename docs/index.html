@@ -86,20 +86,33 @@
             <form class="grid grid-cols-1 md:grid-cols-[10em,auto] gap-4 md:gap-4">
                 <label class="md:text-right md:pt-2.5 font-medium" for="allowedips">Allowed IPs:</label>
                 <div class="flex flex-col gap-2">
-                    <input class="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition" type="text" id="allowedips" name="allowedips" placeholder="0.0.0.0/0, ::/0">
+                    <div class="relative flex items-center w-full">
+                        <input class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition" type="text" id="allowedips" name="allowedips" placeholder="0.0.0.0/0, ::/0">
+                        <button type="button" class="clear-btn absolute right-2.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition hidden focus:outline-none p-1" data-target="allowedips" aria-label="Clear Allowed IPs">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="flex flex-wrap items-center gap-1.5 text-xs">
                         <span class="text-gray-500 dark:text-gray-400 font-medium mr-1">Presets:</span>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="allowedips" data-value="0.0.0.0/0, ::/0">All (v4+v6)</button>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="allowedips" data-value="0.0.0.0/0">IPv4 Only</button>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="allowedips" data-value="::/0">IPv6 Only</button>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="allowedips" data-value="10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16">RFC 1918 Private</button>
-                        <button type="button" class="clear-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition" data-target="allowedips">Clear</button>
                     </div>
                 </div>
 
                 <label class="md:text-right md:pt-2.5 font-medium" for="disallowedips">Disallowed IPs:</label>
                 <div class="flex flex-col gap-2">
-                    <input class="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition" type="text" id="disallowedips" name="disallowedips" placeholder="10.0.0.0/8, 192.168.0.0/16, fc00::/7">
+                    <div class="relative flex items-center w-full">
+                        <input class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition" type="text" id="disallowedips" name="disallowedips" placeholder="10.0.0.0/8, 192.168.0.0/16, fc00::/7">
+                        <button type="button" class="clear-btn absolute right-2.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition hidden focus:outline-none p-1" data-target="disallowedips" aria-label="Clear Disallowed IPs">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="flex flex-wrap items-center gap-1.5 text-xs">
                         <span class="text-gray-500 dark:text-gray-400 font-medium mr-1">Presets:</span>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="disallowedips" data-value="10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16">Private IPv4 (RFC 1918)</button>
@@ -108,7 +121,6 @@
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="disallowedips" data-value="10.0.0.0/24">10.0.0.0/24</button>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="disallowedips" data-value="100.64.0.0/10">CGNAT (100.64.0.0/10)</button>
                         <button type="button" class="preset-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition" data-target="disallowedips" data-value="fc00::/7, fe80::/10">Private IPv6</button>
-                        <button type="button" class="clear-btn px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition" data-target="disallowedips">Clear</button>
                     </div>
                 </div>
 
