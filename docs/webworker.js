@@ -18,11 +18,17 @@ self.onmessage = async (event) => {
     await pyodide.runPythonAsync(`
         from pyodide.http import pyfetch
         response = await pyfetch("./wg.py")
+        if not response.ok:
+            raise RuntimeError(f"Failed to fetch wg.py: HTTP {response.status}")
         with open("script.py", "wb") as f:
             f.write(await response.bytes())
         `);
     pkg = pyodide.pyimport("script");
-    let results = await pkg.calculate_wg_allowedips(context.a, context.d).join(",");
+    let pyResult = pkg.calculate_wg_allowedips(context.a, context.d);
+    let results = pyResult.toJs ? pyResult.toJs().join(",") : pyResult.join(",");
+    if (pyResult && pyResult.destroy) {
+      pyResult.destroy();
+    }
     self.postMessage({ results, id });
   } catch (error) {
     self.postMessage({ error: error.message, id });
