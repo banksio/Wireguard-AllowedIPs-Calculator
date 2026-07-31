@@ -4,6 +4,7 @@ const resultElement = document.getElementById("result");
 const allowedElement = document.getElementById("allowedips");
 const disallowedElement = document.getElementById("disallowedips");
 const calcButton = document.getElementById("calc");
+const clearAllButton = document.getElementById("clear-all");
 
 calcButton.addEventListener("click", async () => {
     try {
@@ -26,4 +27,37 @@ calcButton.addEventListener("click", async () => {
     } finally {
         calcButton.disabled = false;
     }
-})
+});
+
+document.querySelectorAll(".preset-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-target");
+        const val = btn.getAttribute("data-value");
+        const input = document.getElementById(targetId);
+        if (input) {
+            input.value = val;
+            input.focus();
+        }
+    });
+});
+
+document.querySelectorAll(".clear-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-target");
+        const input = document.getElementById(targetId);
+        if (input) {
+            input.value = "";
+            input.focus();
+        }
+    });
+});
+
+if (clearAllButton) {
+    clearAllButton.addEventListener("click", () => {
+        allowedElement.value = "";
+        disallowedElement.value = "";
+        resultElement.hidden = true;
+        resultElement.innerText = "";
+        allowedElement.focus();
+    });
+}
