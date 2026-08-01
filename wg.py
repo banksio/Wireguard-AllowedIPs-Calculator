@@ -17,24 +17,19 @@ def calc_wg_ip_range(
     allowed_networking: T,
     disallowed_networking: T,
 ) -> list:
-    addr = []
-    output: list[str] = []
-    for i in allowed_networking:
-        count = 0
-        for j in disallowed_networking:
-            if j.subnet_of(i):  # type: ignore
-                for allowedip in i.address_exclude(j):  # type: ignore
-                    addr.append(allowedip)
-                count += 1
-        if count == 0:
-            addr.append(i)
-    for res in addr:
-        for dis in disallowed_networking:
-            if dis.subnet_of(res):
-                addr.remove(res)
-    for strings in addr:
-        output.append(str(strings))
-    return output
+    result_networks = list(allowed_networking)
+    for dis in disallowed_networking:
+        new_result = []
+        for net in result_networks:
+            if dis.subnet_of(net):  # type: ignore
+                new_result.extend(net.address_exclude(dis))  # type: ignore
+            elif net.subnet_of(dis):  # type: ignore
+                pass
+            else:
+                new_result.append(net)
+        result_networks = new_result
+
+    return [str(net) for net in result_networks]
 
 
 def check_raw_ips(allow_ip_raw, disallow_ip_raw):
